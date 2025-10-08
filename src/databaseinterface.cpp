@@ -3925,6 +3925,10 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
 ) as EmbeddedCover 
 FROM 
 `Albums` album LEFT JOIN 
@@ -4016,6 +4020,10 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
 ) as EmbeddedCover 
 FROM 
 `Albums` album, 
@@ -4084,6 +4092,10 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
 ) as EmbeddedCover, 
 ( 
 SELECT COUNT(tracksCount.`ID`) 
@@ -4191,6 +4203,10 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
 ) as EmbeddedCover, 
 ( 
 SELECT COUNT(tracksCount.`ID`) 
@@ -4473,15 +4489,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -4489,8 +4505,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `TracksData` tracksMapping 
@@ -4634,15 +4653,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -4650,8 +4669,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -4767,15 +4789,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -4783,8 +4805,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -5202,15 +5227,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -5218,8 +5243,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -5380,15 +5408,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -5396,8 +5424,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -5500,15 +5531,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -5516,8 +5547,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -5960,15 +5994,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -5976,8 +6010,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -6716,15 +6753,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -6732,8 +6769,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -6853,15 +6893,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -6869,8 +6909,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
@@ -6990,15 +7033,15 @@ tracksMapping.`FirstPlayDate`,
 tracksMapping.`LastPlayDate`, 
 tracksMapping.`PlayCounter`, 
 ( 
+SELECT CASE WHEN tracks.`HasEmbeddedCover` = 1 
+THEN tracks.`FileName` 
+ELSE 
+( 
 SELECT tracksCover.`FileName` 
 FROM 
 `Tracks` tracksCover 
 WHERE 
 tracksCover.`HasEmbeddedCover` = 1 AND 
-( 
-(tracksCover.`AlbumTitle` IS NULL AND 
-tracksCover.`FileName` = tracks.`FileName` ) OR 
-( 
 tracksCover.`AlbumTitle` = album.`Title` AND 
 (tracksCover.`AlbumArtistName` = album.`ArtistName` OR 
 (tracksCover.`AlbumArtistName` IS NULL AND 
@@ -7006,8 +7049,11 @@ album.`ArtistName` IS NULL
 ) 
 ) AND 
 tracksCover.`AlbumPath` = album.`AlbumPath` 
-) 
-) 
+ORDER BY 
+tracksCover.`DiscNumber` DESC, 
+tracksCover.`TrackNumber` DESC, 
+tracksCover.`Title` ASC 
+) END 
 ) as EmbeddedCover 
 FROM 
 `Tracks` tracks, 
